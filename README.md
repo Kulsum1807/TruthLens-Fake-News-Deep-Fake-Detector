@@ -1,4 +1,4 @@
-# 🧠 Fake News Detection 
+# TruthLens- Fake News & Deep Fake Detector
 
 An intelligent web-based system that detects **fake news, image morphing, and video deepfakes** using a combination of **machine learning, deep learning, and real-time verification techniques**.
 
@@ -6,24 +6,24 @@ An intelligent web-based system that detects **fake news, image morphing, and vi
 
 ## 🌟 Key Features
 
-* 📰 **Fake News Detection (Text)**
+*  **Fake News Detection (Text)**
 
   * Real vs Fake classification
   * Real-time verification using Google Search API
   * Multilingual support with automatic translation
   * Displays credible source links
 
-* 🖼️ **Image Morphing Detection**
+*  **Image Morphing Detection**
 
   * Detects morphed vs original images
   * Custom CNN model built using PyTorch
 
-* 🎥 **Video Deepfake Detection**
+*  **Video Deepfake Detection**
 
   * Frame-based analysis using OpenCV
   * Deepfake vs authentic classification
 
-* 📊 **Interactive UI**
+*  **Interactive UI**
 
   * Tab-based navigation (Text / Image / Video)
   * Animated accuracy bars
@@ -118,7 +118,7 @@ python app.py
 
 ---
 
-## 🧠 How It Works
+## How It Works
 
 * **Text Detection**
 
@@ -132,28 +132,8 @@ python app.py
 
   * Extracts frames → analyzes using CNN → aggregates prediction
 
----
 
-## 📸 Screenshots
-
-### 🏠 Main Interface
-
-![Main UI](screenshots/main.png)
-
-### 📰 Fake News Detection (Text)
-
-![Text Detection](screenshots/text.png)
-
-### 🖼️ Image Morphing Detection
-
-![Image Detection](screenshots/image.png)
-
-### 🎥 Video Deepfake Detection
-
-![Video Detection](screenshots/video.png)
-
-
-## 📊 Model Training
+## Model Training
 
 ```bash
 python train_model.py
@@ -174,7 +154,7 @@ This project was developed as part of a team effort.
 
 ---
 
-## 🚀 Future Enhancements
+## Future Enhancements
 
 * Advanced NLP models (BERT / Transformers)
 * Real-time news scraping
@@ -183,7 +163,7 @@ This project was developed as part of a team effort.
 
 ---
 
-## 📜 License
+## License
 
 Licensed under the MIT License.
 
