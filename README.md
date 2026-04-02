@@ -171,7 +171,8 @@ Licensed under the MIT License.
 
 ## Author
 
-**Kulsum** 
-- _Fake News Detection- A TEXT, IMAGE AND VIDEO DETECTOR_ 
+## **Kulsum** 
+- _Fake News Detection- A TEXT, IMAGE AND VIDEO DETECTOR_
+ 
 📧 kulsumsheikh1807@gmail.com  
 🔗 https://github.com/Kulsum1807
