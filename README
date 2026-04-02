@@ -1,0 +1,198 @@
+# 🧠 Fake News Detection 
+
+An intelligent web-based system that detects **fake news, image morphing, and video deepfakes** using a combination of **machine learning, deep learning, and real-time verification techniques**.
+
+---
+
+## 🌟 Key Features
+
+* 📰 **Fake News Detection (Text)**
+
+  * Real vs Fake classification
+  * Real-time verification using Google Search API
+  * Multilingual support with automatic translation
+  * Displays credible source links
+
+* 🖼️ **Image Morphing Detection**
+
+  * Detects morphed vs original images
+  * Custom CNN model built using PyTorch
+
+* 🎥 **Video Deepfake Detection**
+
+  * Frame-based analysis using OpenCV
+  * Deepfake vs authentic classification
+
+* 📊 **Interactive UI**
+
+  * Tab-based navigation (Text / Image / Video)
+  * Animated accuracy bars
+  * Modern glassmorphism design
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend**
+
+* HTML, CSS, JavaScript
+
+**Backend**
+
+* Flask (Python)
+
+**AI / ML**
+
+* PyTorch (CNN model)
+* OpenCV (video processing)
+* Google Custom Search API
+* Google Translate API
+
+---
+
+## ⚙️ Project Structure
+
+```bash
+FND_2025/
+│
+├── templates/
+│   └── index.html          # Main frontend UI
+│
+├── static/
+│   ├── style.css           # UI styling
+│   ├── script.js           # Frontend logic (API calls)
+│   └── uploads/            # Uploaded files (images/videos)
+│
+├── dataset/                # Training dataset (real & morphed)
+│
+├── app.py                  # Main Flask backend
+├── train_model.py          # CNN model training script
+├── extract_dataset.py      # Dataset extraction script
+├── morph_model.pth         # Trained model file
+│
+├── requirements.txt        # Dependencies
+├── .env                    # API keys (not pushed to GitHub)
+├── .gitignore              # Ignored files
+├── LICENSE                 # MIT License
+└── README.md               # Project documentation
+```
+
+---
+
+## ▶️ Getting Started
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/fake-news-detector.git
+cd fake-news-detector
+```
+
+### 2. Setup Virtual Environment
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Add Environment Variables
+
+Create a `.env` file:
+
+```env
+GOOGLE_API_KEY=your_api_key
+GOOGLE_CX=your_search_engine_id
+```
+
+### 5. Run the Application
+
+```bash
+python app.py
+```
+
+---
+
+## 🧠 How It Works
+
+* **Text Detection**
+
+  * Translates input → analyzes keywords, domains, and patterns → verifies with web sources 
+
+* **Image Detection**
+
+  * Processes image → CNN model → predicts morphed/original
+
+* **Video Detection**
+
+  * Extracts frames → analyzes using CNN → aggregates prediction
+
+---
+
+## 📸 Screenshots
+
+### 🏠 Main Interface
+
+![Main UI](screenshots/main.png)
+
+### 📰 Fake News Detection (Text)
+
+![Text Detection](screenshots/text.png)
+
+### 🖼️ Image Morphing Detection
+
+![Image Detection](screenshots/image.png)
+
+### 🎥 Video Deepfake Detection
+
+![Video Detection](screenshots/video.png)
+
+
+## 📊 Model Training
+
+```bash
+python train_model.py
+```
+
+Dataset format:
+
+```
+dataset/
+├── real/
+└── morphed/
+```
+---
+
+## 👥 Team Collaboration
+
+This project was developed as part of a team effort.
+
+---
+
+## 🚀 Future Enhancements
+
+* Advanced NLP models (BERT / Transformers)
+* Real-time news scraping
+* Improved deepfake detection models
+* Cloud deployment (AWS / Render)
+
+---
+
+## 📜 License
+
+Licensed under the MIT License.
+
+---
+
+## **Author**
+
+**Kulsum**
+
+- _Fake News Detection- A TEXT, IMAGE AND VIDEO DETECTOR_
+- kulsumsheikh1807@gmail.com
+- [GitHub](https://github.com/Kulsum1807)

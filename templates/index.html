@@ -1,45 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fake News Detection App</title>
+    <title>Fake News & Deepfake Detector</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
-    <div class="container">
-        <h1>Fake News & Image Manipulation Detection</h1>
 
-        <!-- News Text or URL Section -->
-        <div class="input-section">
-            <h2>Enter News Text or URL:</h2>
-            <form id="unified-form">
-                <textarea id="user_input" placeholder="Type news text or paste a news URL..." required></textarea>
-                <button type="submit">Check News</button>
-            </form>
-            <div id="unified-result" class="result-box">Prediction results will appear here.</div>
+    <div class="container">
+
+        <h1>AI Fake News & Deepfake Detector</h1>
+
+        <div class="tabs">
+            <button onclick="showTab('text')">Text News</button>
+            <button onclick="showTab('image')">Image</button>
+            <button onclick="showTab('video')">Video</button>
         </div>
 
-        <!-- Image Upload Section -->
-        <div class="input-section">
-            <h2>Upload an Image:</h2>
+        <!-- TEXT TAB -->
+        <div id="text-tab" class="tab-content">
+            <form id="text-form">
+                <textarea id="user_input" placeholder="Enter news text here..." required></textarea>
+                <button type="submit">Analyze News</button>
+            </form>
+            <div id="text-result" class="result-box"></div>
+        </div>
+
+        <!-- IMAGE TAB -->
+        <div id="image-tab" class="tab-content hidden">
             <form id="image-form" enctype="multipart/form-data">
                 <input type="file" id="image_file" accept="image/*" required>
-                <button type="submit">Check Image</button>
+                <button type="submit">Analyze Image</button>
             </form>
-            <div id="image-result" class="result-box">Image verification result will appear here.</div>
+            <div id="image-result" class="result-box"></div>
         </div>
 
-        <!-- Footer -->
-        <footer>
-            <p>This tool uses search-based logic and simulated image morphing detection.</p>
-            <p>Powered by Google Programmable Search. <a href="#">Learn more</a>.</p>
-        </footer>
+        <!-- VIDEO TAB -->
+        <div id="video-tab" class="tab-content hidden">
+            <form id="video-form" enctype="multipart/form-data">
+                <input type="file" id="video_file" accept="video/*" required>
+                <button type="submit">Analyze Video</button>
+            </form>
+            <div id="video-result" class="result-box"></div>
+        </div>
+
     </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
+
 </body>
 
 </html>

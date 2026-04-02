@@ -1,95 +1,127 @@
-// Handle News Prediction Form
-document.getElementById('unified-form').addEventListener('submit', function (event) {
-    event.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
+  window.showTab = function (tab) {
+    document.querySelectorAll(".tab-content").forEach((el) => {
+      el.classList.add("hidden");
+    });
+    document.getElementById(tab + "-tab").classList.remove("hidden");
+  };
 
-    const userInput = document.getElementById('user_input').value.trim();
-    const resultDiv = document.getElementById('unified-result');
-    resultDiv.innerHTML = "🔎 Analyzing news...";
+  // ===========================
+  // TEXT DETECTION
+  // ===========================
+  const textForm = document.getElementById("text-form");
 
-    if (!userInput) {
-        alert("Please enter some text or a URL!");
-        return;
-    }
+  textForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-    fetch('/predict', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ 'user_input': userInput })
+    const input = document.getElementById("user_input").value;
+    const resultDiv = document.getElementById("text-result");
+
+    resultDiv.innerHTML = "🔎 Analyzing...";
+
+    fetch("/predict", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ user_input: input }),
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.prediction) {
-                const accuracy = data.accuracy || 0;
-                const linksHtml = data.links && data.links.length > 0
-                    ? `<br><strong>Sources:</strong><ul>${data.links.map(link => `<li><a href="${link[1]}" target="_blank">${link[0]}</a></li>`).join('')}</ul>`
-                    : '<br><em>No credible sources found.</em>';
+      .then((res) => res.json())
+      .then((data) => {
+        let linksHtml = "";
 
-                const accuracyBar = `
-                <div class="accuracy-bar-wrapper" style="margin-top:10px;">
-                    <div class="accuracy-bar" style="width: ${accuracy}%; background-color: ${getAccuracyColor(accuracy)};">
-                        ${accuracy}%
-                    </div>
-                </div>`;
+        if (data.links && data.links.length > 0) {
+          linksHtml = "<br><strong>Sources:</strong><ul>";
+          data.links.forEach((link) => {
+            linksHtml += `<li><a href="${link[1]}" target="_blank">${link[0]}</a></li>`;
+          });
+          linksHtml += "</ul>";
+        } else {
+          linksHtml = "<br><em>Sources unavailable.</em>";
+        }
 
-                resultDiv.innerHTML = `
+        resultDiv.innerHTML = `
                 <strong>Prediction:</strong> ${data.prediction}
-                ${accuracyBar}
-                ${linksHtml}`;
-            } else {
-                resultDiv.innerHTML = `<strong>Error:</strong> ${data.error || 'No result'}`;
-            }
-        })
-        .catch(error => {
-            resultDiv.innerText = 'Error: ' + error.message;
-        });
-});
+                <div class="accuracy-bar-wrapper">
+                    <div class="accuracy-bar" style="width:${data.accuracy}%">
+                        ${data.accuracy}%
+                    </div>
+                </div>
+                ${linksHtml}
+            `;
+      })
+      .catch((err) => {
+        resultDiv.innerHTML = "Error: " + err;
+      });
+  });
 
-// Handle Image Upload Form
-document.getElementById('image-form').addEventListener('submit', function (event) {
-    event.preventDefault();
+  // ===========================
+  // IMAGE DETECTION
+  // ===========================
+  const imageForm = document.getElementById("image-form");
 
-    const imageFile = document.getElementById('image_file').files[0];
-    const resultDiv = document.getElementById('image-result');
-    resultDiv.innerHTML = "🔎 Analyzing image...";
+  imageForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-    if (!imageFile) {
-        alert("Please upload an image!");
-        return;
-    }
+    const fileInput = document.getElementById("image_file");
+    const resultDiv = document.getElementById("image-result");
+
+    resultDiv.innerHTML = "🖼️ Analyzing image...";
 
     const formData = new FormData();
-    formData.append('image_file', imageFile);
+    formData.append("image_file", fileInput.files[0]);
 
-    fetch('/predict_image', {
-        method: 'POST',
-        body: formData
+    fetch("/predict_image", {
+      method: "POST",
+      body: formData,
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.prediction) {
-                const accuracy = data.accuracy || 0;
-                const accuracyBar = `
-                <div class="accuracy-bar-wrapper" style="margin-top:10px;">
-                    <div class="accuracy-bar" style="width: ${accuracy}%; background-color: ${getAccuracyColor(accuracy)};">
-                        ${accuracy}%
+      .then((res) => res.json())
+      .then((data) => {
+        resultDiv.innerHTML = `
+                <strong>Prediction:</strong> ${data.prediction}
+                <div class="accuracy-bar-wrapper">
+                    <div class="accuracy-bar" style="width:${data.accuracy}%">
+                        ${data.accuracy}%
                     </div>
-                </div>`;
+                </div>
+            `;
+      })
+      .catch((err) => {
+        resultDiv.innerHTML = "Error: " + err;
+      });
+  });
 
-                let imageHTML = `<strong>Prediction:</strong> ${data.prediction}${accuracyBar}`;
-                imageHTML += `<br><strong>Uploaded Image:</strong> <a href="${data.image_path}" target="_blank">View</a>`;
-                resultDiv.innerHTML = imageHTML;
-            } else {
-                resultDiv.innerHTML = `<strong>Error:</strong> ${data.error || 'No result'}`;
-            }
-        })
-        .catch(error => {
-            resultDiv.innerText = 'Error: ' + error.message;
-        });
+  // ===========================
+  // VIDEO DETECTION
+  // ===========================
+  const videoForm = document.getElementById("video-form");
+
+  videoForm.addEventListener("submit", function (e) {
+    e.preventDefault(); // prevents page refresh
+
+    const fileInput = document.getElementById("video_file");
+    const resultDiv = document.getElementById("video-result");
+
+    resultDiv.innerHTML = "🎥 Analyzing video...";
+
+    const formData = new FormData();
+    formData.append("video_file", fileInput.files[0]);
+
+    fetch("/predict_video", {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        resultDiv.innerHTML = `
+                <strong>Prediction:</strong> ${data.prediction}
+                <div class="accuracy-bar-wrapper">
+                    <div class="accuracy-bar" style="width:${data.accuracy}%">
+                        ${data.accuracy}%
+                    </div>
+                </div>
+            `;
+      })
+      .catch((err) => {
+        resultDiv.innerHTML = "Error: " + err;
+      });
+  });
 });
-
-// Utility function to get color based on accuracy
-function getAccuracyColor(accuracy) {
-    if (accuracy >= 85) return '#27ae60';     // green
-    if (accuracy >= 60) return '#f39c12';     // orange
-    return '#c0392b';                         // red
-}
