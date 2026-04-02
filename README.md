@@ -84,7 +84,7 @@ FND_2025/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/fake-news-detector.git
+git clone git clone https://github.com/Kulsum1807/TruthLens-Fake-News-Deep-Fake-Detector.gitgi
 cd fake-news-detector
 ```
 
@@ -169,10 +169,9 @@ Licensed under the MIT License.
 
 ---
 
-## **Author**
+## Author
 
-**Kulsum**
-
-- _Fake News Detection- A TEXT, IMAGE AND VIDEO DETECTOR_
-- kulsumsheikh1807@gmail.com
-- [GitHub](https://github.com/Kulsum1807)
+**Kulsum** 
+- _Fake News Detection- A TEXT, IMAGE AND VIDEO DETECTOR_ 
+📧 kulsumsheikh1807@gmail.com  
+🔗 https://github.com/Kulsum1807
